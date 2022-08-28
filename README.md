@@ -1,5 +1,7 @@
 # My-MovieDB
 A Movie Database Android Application
+
+ <p float="left">
  
 <img width="280" height="600" alt="Screenshot_2022-08-28-19-00-13-86_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187080344-def49644-d1ec-446c-9783-df2f62686ba3.jpg">
 
@@ -16,3 +18,5 @@ A Movie Database Android Application
 <img width="280" height="600" alt="Screenshot_2022-08-28-19-11-49-69_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187080344-def49644-d1ec-446c-9783-df2f62686ba3.jpg">
 
 <img width="280" height="600" alt="Screenshot_2022-08-28-21-12-58-55_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187080344-def49644-d1ec-446c-9783-df2f62686ba3.jpg">
+
+</p>
