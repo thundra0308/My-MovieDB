@@ -169,7 +169,6 @@ class MovieDetailsActivity : AppCompatActivity() {
 
             Glide.with(this@MovieDetailsActivity)
                 .load(Constants.IMAGE_BASE_URL + posterPath)
-                .centerCrop()
                 .dontAnimate()
                 .into(movieDetailPosterImage)
         Glide
