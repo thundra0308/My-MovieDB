@@ -1,5 +1,6 @@
 # My-MovieDB
-A Movie Database Android Application
+A Movie and Series Info Android Application Like IMDB Website
+Uses TMDB Api
 
  <p float="left">
 
