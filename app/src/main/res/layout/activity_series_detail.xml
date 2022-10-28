@@ -174,7 +174,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="5dp"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/cv_sda_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,6 +194,7 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_overview"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -215,9 +215,11 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_sda_overview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone"
                     app:cardCornerRadius="6dp"
                     android:layout_marginTop="4dp"
                     app:cardBackgroundColor="@color/primary2"
@@ -244,11 +246,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/ll_series_overview"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_seasons"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -272,6 +275,7 @@
                     android:id="@+id/rv_sda_seasons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="4dp"/>
 
             </LinearLayout>
@@ -282,11 +286,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/ll_series_seasons"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_cast"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -310,6 +315,7 @@
                     android:id="@+id/rv_sda_cast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="5dp"/>
 
             </LinearLayout>
@@ -320,11 +326,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/ll_series_cast"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_crew"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -348,6 +355,7 @@
                     android:id="@+id/rv_sda_crew"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="5dp"/>
 
             </LinearLayout>
@@ -356,13 +364,14 @@
                 android:id="@+id/ll_series_allinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
                 android:layout_below="@id/ll_series_credit"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_allinfo"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -381,6 +390,13 @@
                         android:textColor="@color/black"/>
 
                 </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/ll_sda_allinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1222,6 +1238,8 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -1230,11 +1248,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_below="@id/ll_series_allinfo"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_series_videos"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     app:cardCornerRadius="6dp"
@@ -1258,6 +1277,7 @@
                     android:id="@+id/rv_sda_videos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="5dp"/>
 
             </LinearLayout>

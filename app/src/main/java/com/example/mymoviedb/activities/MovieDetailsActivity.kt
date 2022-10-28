@@ -28,7 +28,7 @@ import com.github.lzyzsd.circleprogress.ArcProgress
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
-class MovieDetailsActivity : AppCompatActivity() {
+class MovieDetailsActivity : BaseActivity() {
 
     private var binding: ActivityMovieDetailsBinding? = null
     private val viewModel: MovieDetailActivityViewModel by lazy {
@@ -60,6 +60,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                 setUpRecyclerViewCreditCast(state.data?.credits?.cast!!)
                 setUpRecyclerViewCreditCrew(state.data.credits.crew!!)
                 setUpVideoRecyclerView(state.data.videos!!)
+                setupAnimation()
             }
             is MovieDetailActivityScreenState.Error -> {
                 binding?.pbMoviedetailactivity?.visibility = View.GONE
@@ -235,6 +236,44 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailHomepage.text = homepage
         movieDetailOverview.text = overview
         totalVoteCount.text = totalVote.toString()
+    }
+
+    private fun setupAnimation() {
+        binding?.cvMoviesOverview?.setOnClickListener {
+            if(binding?.cvMdaOverview?.visibility==View.VISIBLE) {
+                collapse(binding?.cvMdaOverview!!)
+            } else {
+                expand(binding?.cvMdaOverview!!)
+            }
+        }
+        binding?.cvMoviesCast?.setOnClickListener {
+            if(binding?.rvMdaCast?.visibility==View.VISIBLE) {
+                collapse(binding?.rvMdaCast!!)
+            } else {
+                expand(binding?.rvMdaCast!!)
+            }
+        }
+        binding?.cvMoviesCrew?.setOnClickListener {
+            if(binding?.rvMdaCrew?.visibility==View.VISIBLE) {
+                collapse(binding?.rvMdaCrew!!)
+            } else {
+                expand(binding?.rvMdaCrew!!)
+            }
+        }
+        binding?.cvMoviesAllinfo?.setOnClickListener {
+            if(binding?.llMdaAllinfo?.visibility==View.VISIBLE) {
+                collapse(binding?.llMdaAllinfo!!)
+            } else {
+                expand(binding?.llMdaAllinfo!!)
+            }
+        }
+        binding?.cvMoviesVideos?.setOnClickListener {
+            if(binding?.rvMdaVideos?.visibility==View.VISIBLE) {
+                collapse(binding?.rvMdaVideos!!)
+            } else {
+                expand(binding?.rvMdaVideos!!)
+            }
+        }
     }
 
     override fun onDestroy() {

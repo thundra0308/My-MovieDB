@@ -24,10 +24,13 @@
         android:theme="@style/Theme.MyMovieDB"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SeriesDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyMovieDB.SharedViewTransition"
+            android:name=".BaseActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.SeriesDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyMovieDB.SharedViewTransition" />
         <activity
             android:name=".activities.MainActivitySeries"
             android:exported="false"

@@ -25,11 +25,9 @@ class MovieCreditCastAdapter(private val context: Context, private val creditLis
             }
         }
         fun bindData(creditCast: MovieCreditCastModel) {
-            val container = itemView.findViewById<CardView>(R.id.container_credit)
             val image = itemView.findViewById<ImageView>(R.id.movie_credit_image)
             val name = itemView.findViewById<TextView>(R.id.tv_movieCreditName)
             val characterName = itemView.findViewById<TextView>(R.id.tv_movieCreditCharacterName)
-            container.animation = AnimationUtils.loadAnimation(itemView.context,R.anim.fade_in)
             Glide
                 .with(context)
                 .load(Constants.IMAGE_BASE_URL+creditCast.profile_path)

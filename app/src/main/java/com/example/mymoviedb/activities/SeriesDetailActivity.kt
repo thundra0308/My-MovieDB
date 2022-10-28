@@ -1,10 +1,13 @@
 package com.example.mymoviedb.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.Animation
+import android.view.animation.Transformation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +22,8 @@ import com.example.mymoviedb.utils.Constants
 import com.example.mymoviedb.viewmodels.SeriesDetailActivityViewModel
 import com.flaviofaria.kenburnsview.KenBurnsView
 
-class SeriesDetailActivity : AppCompatActivity() {
+
+class SeriesDetailActivity : BaseActivity() {
 
     private var binding: ActivitySeriesDetailBinding? = null
     private val viewModel: SeriesDetailActivityViewModel by lazy {
@@ -48,6 +52,7 @@ class SeriesDetailActivity : AppCompatActivity() {
                 binding?.pbSeriesdetailactivity?.visibility = View.GONE
                 binding?.clSda?.visibility = View.VISIBLE
                 setUpUi(state.data)
+                setupAnimation()
             }
             is SeriesDetailActivityScreenState.Error -> {
                 binding?.pbSeriesdetailactivity?.visibility = View.GONE
@@ -188,6 +193,51 @@ class SeriesDetailActivity : AppCompatActivity() {
                 val rv = binding?.rvSdaVideos
                 rv?.layoutManager = LinearLayoutManager(this@SeriesDetailActivity, LinearLayoutManager.VERTICAL, false)
                 rv?.adapter = adapter
+            }
+        }
+    }
+
+    private fun setupAnimation() {
+        binding?.cvSeriesOverview?.setOnClickListener {
+            if(binding?.cvSdaOverview?.visibility==View.VISIBLE) {
+                collapse(binding?.cvSdaOverview!!)
+            } else {
+                expand(binding?.cvSdaOverview!!)
+            }
+        }
+        binding?.cvSeriesSeasons?.setOnClickListener {
+            if(binding?.rvSdaSeasons?.visibility==View.VISIBLE) {
+                collapse(binding?.rvSdaSeasons!!)
+            } else {
+                expand(binding?.rvSdaSeasons!!)
+            }
+        }
+        binding?.cvSeriesCast?.setOnClickListener {
+            if(binding?.rvSdaCast?.visibility==View.VISIBLE) {
+                collapse(binding?.rvSdaCast!!)
+            } else {
+                expand(binding?.rvSdaCast!!)
+            }
+        }
+        binding?.cvSeriesCrew?.setOnClickListener {
+            if(binding?.rvSdaCrew?.visibility==View.VISIBLE) {
+                collapse(binding?.rvSdaCrew!!)
+            } else {
+                expand(binding?.rvSdaCrew!!)
+            }
+        }
+        binding?.cvSeriesAllinfo?.setOnClickListener {
+            if(binding?.llSdaAllinfo?.visibility==View.VISIBLE) {
+                collapse(binding?.llSdaAllinfo!!)
+            } else {
+                expand(binding?.llSdaAllinfo!!)
+            }
+        }
+        binding?.cvSeriesVideos?.setOnClickListener {
+            if(binding?.rvSdaVideos?.visibility==View.VISIBLE) {
+                collapse(binding?.rvSdaVideos!!)
+            } else {
+                expand(binding?.rvSdaVideos!!)
             }
         }
     }
