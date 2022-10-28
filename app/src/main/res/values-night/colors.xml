@@ -9,12 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow_main">#f3ce13</color>
     <color name="semiTransparentColor">#5E000000</color>
-    <color name="primary1">#FFFFFF</color>
+    <color name="primary1">#000000</color>
     <color name="primary2">#FFDB25</color>
-    <color name="textcolor2">#000000</color>
+    <color name="textcolor2">#FFFFFF</color>
     <color name="bg_white">#EEEEEE</color>
     <color name="bg">@color/bg_white</color>
     <color name="nav_bg_inv">#00FFFFFF</color>
-    <color name="start_color">#00FFFFFF</color>
-    <color name="end_color">#FFFFFF</color>
+    <color name="start_color">#00000000</color>
+    <color name="end_color">#000000</color>
 </resources>

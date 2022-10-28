@@ -8,8 +8,10 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.mymoviedb.R
@@ -18,30 +20,56 @@ import com.example.mymoviedb.adapters.MovieCreditCrewAdapter
 import com.example.mymoviedb.adapters.MovieVideoAdapter
 import com.example.mymoviedb.databinding.ActivityMovieDetailsBinding
 import com.example.mymoviedb.models.*
+import com.example.mymoviedb.screenstate.MovieDetailActivityScreenState
 import com.example.mymoviedb.utils.Constants
+import com.example.mymoviedb.viewmodels.MovieDetailActivityViewModel
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.github.lzyzsd.circleprogress.ArcProgress
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 class MovieDetailsActivity : AppCompatActivity() {
+
     private var binding: ActivityMovieDetailsBinding? = null
+    private val viewModel: MovieDetailActivityViewModel by lazy {
+        ViewModelProvider(this).get(MovieDetailActivityViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        val movieId = intent.getLongExtra(Constants.MOVIE_ID,0)
+        viewModel.fetchMovieDetails(movieId)
+        viewModel.movieDetailLiveData.observe(this) { state ->
+            processMovieDetails(state)
         }
-        val movieDetails = intent.getParcelableExtra<MovieDetailsModel>(Constants.MOVIE_DETAILS)
-        prepareMovieDetails(movieDetails)
-        setUpRecyclerViewCreditCast(movieDetails?.credits?.cast!!)
-        setUpRecyclerViewCreditCrew(movieDetails.credits.crew!!)
-        setUpVideoRecyclerView(movieDetails.videos!!)
+    }
+
+    private fun processMovieDetails(state: MovieDetailActivityScreenState<MovieDetailsModel?>) {
+        when(state) {
+            is MovieDetailActivityScreenState.Loading -> {
+                binding?.pbMoviedetailactivity?.visibility = View.VISIBLE
+                binding?.clMda?.visibility = View.GONE
+            }
+            is MovieDetailActivityScreenState.Success -> {
+                binding?.pbMoviedetailactivity?.visibility = View.GONE
+                binding?.clMda?.visibility = View.VISIBLE
+                prepareMovieDetails(state.data)
+                setUpRecyclerViewCreditCast(state.data?.credits?.cast!!)
+                setUpRecyclerViewCreditCrew(state.data.credits.crew!!)
+                setUpVideoRecyclerView(state.data.videos!!)
+            }
+            is MovieDetailActivityScreenState.Error -> {
+                binding?.pbMoviedetailactivity?.visibility = View.GONE
+                binding?.clMda?.visibility = View.GONE
+            }
+        }
     }
 
     private fun setUpVideoRecyclerView(videos: MovieVideosModel) {
-        val ll = findViewById<LinearLayout>(R.id.ll_video_and_trailers)
+        val ll = findViewById<LinearLayout>(R.id.ll_movies_videos)
         if(videos.results?.size==0) {
             ll.visibility = View.GONE
         } else {
@@ -57,7 +85,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 })
-                val rv = binding?.rvMovieDetailVideos
+                val rv = binding?.rvMdaVideos
                 rv?.layoutManager = LinearLayoutManager(
                     this@MovieDetailsActivity,
                     LinearLayoutManager.VERTICAL,
@@ -69,7 +97,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewCreditCast(castList: List<MovieCreditCastModel>) {
-        val ll = findViewById<LinearLayout>(R.id.ll_movie_detail_cast)
+        val ll = findViewById<LinearLayout>(R.id.ll_movies_cast)
         if(castList.size==0) {
             ll.visibility = View.GONE
         } else {
@@ -81,7 +109,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
                     }
                 })
-                val rv = binding?.rvMovieDetailCast
+                val rv = binding?.rvMdaCast
                 rv?.layoutManager = LinearLayoutManager(
                     this@MovieDetailsActivity,
                     LinearLayoutManager.HORIZONTAL,
@@ -91,8 +119,9 @@ class MovieDetailsActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun setUpRecyclerViewCreditCrew(crewList: List<MovieCreditCrewModel>) {
-        val ll = findViewById<LinearLayout>(R.id.ll_movie_detail_crew)
+        val ll = findViewById<LinearLayout>(R.id.ll_movies_credit)
         if(crewList.size==0) {
             ll.visibility=View.GONE
         } else {
@@ -104,7 +133,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                         TODO("Not yet implemented")
                     }
                 })
-                val rv = binding?.rvMovieDetailCrew
+                val rv = binding?.rvMdaCrew
                 rv?.layoutManager = LinearLayoutManager(
                     this@MovieDetailsActivity,
                     LinearLayoutManager.HORIZONTAL,
@@ -117,37 +146,23 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun prepareMovieDetails(movieDetails: MovieDetailsModel?) {
 
-        val movieDetailPosterImage = findViewById<KenBurnsView>(R.id.movie_detail_poster_image_view)
-        val movieDetailBackdropPosterCircleImageView = findViewById<CircleImageView>(R.id.movie_detail_poster_circle_image_view)
-        val movieRatingBar = findViewById<ArcProgress>(R.id.movie_rating_arcbar)
-
-        val movieDetailTitle = findViewById<TextView>(R.id.movie_detail_title)
-//        var movieDetailOriginalTitleLayout = findViewById<LinearLayout>(R.id.movie_detail_original_title_layout)
-//        var movieDetailOriginalLanguageLayout = findViewById<LinearLayout>(R.id.movie_detail_original_language_layout)
-//        var movieDetailAdultLayout = findViewById<LinearLayout>(R.id.movie_detail_original_adult_layout)
-//        var movieDetailStatusLayout = findViewById<LinearLayout>(R.id.movie_detail_original_status_layout)
-//        var movieDetailRuntimeLayout = findViewById<LinearLayout>(R.id.movie_detail_original_runtime_layout)
-//        var movieDetailBudgetLayout = findViewById<LinearLayout>(R.id.movie_detail_original_budget_layout)
-//        var movieDetailRevenueLayout = findViewById<LinearLayout>(R.id.movie_detail_original_revenue_layout)
-//        var movieDetailGenreLayout = findViewById<LinearLayout>(R.id.movie_detail_original_genre_layout)
-//        var movieDetailProductionCountryLayout = findViewById<LinearLayout>(R.id.movie_detail_production_country_layout)
-//        var movieDetailReleaseDateLayout = findViewById<LinearLayout>(R.id.movie_detail_release_date_layout)
-//        var movieDetailHomepageLayout = findViewById<LinearLayout>(R.id.movie_detail_original_homepage_layout)
-//        var movieDetailOverviewLayout = findViewById<LinearLayout>(R.id.movie_detail_overview_layout)
-
-        var movieDetailOriginalTitle = findViewById<TextView>(R.id.movie_detail_original_title)
-        var movieDetailOriginalLanguage = findViewById<TextView>(R.id.movie_detail_language)
-        var movieDetailAdult = findViewById<TextView>(R.id.movie_detail_adult)
-        var movieDetailStatus = findViewById<TextView>(R.id.movie_detail_status)
-        var movieDetailRuntime = findViewById<TextView>(R.id.movie_detail_runtime)
-        var movieDetailBudget = findViewById<TextView>(R.id.movie_detail_budget)
-        var movieDetailRevenue = findViewById<TextView>(R.id.movie_detail_revenue)
-        var movieDetailGenre = findViewById<TextView>(R.id.movie_detail_genre)
-        var movieDetailProductionCountry = findViewById<TextView>(R.id.movie_detail_production_country)
-        var movieDetailReleaseDate = findViewById<TextView>(R.id.movie_detail_release_date)
-        var movieDetailHomepage = findViewById<TextView>(R.id.movie_detail_homepage)
-        var movieDetailOverview = findViewById<TextView>(R.id.movie_detail_overview)
-        val totalVoteCount = findViewById<TextView>(R.id.vote_count)
+        val movieDetailPosterImage = findViewById<KenBurnsView>(R.id.keniv_mda_banner)
+        val movieDetailBackdropPosterCircleImageView = findViewById<ImageView>(R.id.iv_mda_poster)
+        val movieRatingBar = findViewById<ArcProgress>(R.id.movies_rating_arcbar)
+        val movieDetailTitle = findViewById<TextView>(R.id.tv_mda_title)
+        var movieDetailOriginalTitle = findViewById<TextView>(R.id.tv_mda_originalname)
+        var movieDetailOriginalLanguage = findViewById<TextView>(R.id.tv_mda_originallanguage)
+        var movieDetailAdult = findViewById<TextView>(R.id.tv_mda_adult)
+        var movieDetailStatus = findViewById<TextView>(R.id.tv_mda_status)
+        var movieDetailRuntime = findViewById<TextView>(R.id.tv_mda_runtime)
+        var movieDetailBudget = findViewById<TextView>(R.id.tv_mda_budget)
+        var movieDetailRevenue = findViewById<TextView>(R.id.tv_mda_revenue)
+        var movieDetailGenre = findViewById<TextView>(R.id.tv_mda_genres)
+        var movieDetailProductionCountry = findViewById<TextView>(R.id.tv_mda_pcountries)
+        var movieDetailReleaseDate = findViewById<TextView>(R.id.tv_mda_rd)
+        var movieDetailHomepage = findViewById<TextView>(R.id.tv_mda_homepage)
+        var movieDetailOverview = findViewById<TextView>(R.id.tv_mda_overview)
+        val totalVoteCount = findViewById<TextView>(R.id.tv_mda_tvc)
 
             val rating = movieDetails?.vote_average
             val posterPath = movieDetails?.poster_path
@@ -191,24 +206,29 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailRuntime.text = "Not Available"
         }
         if(budget!=0.toLong()) {
-            movieDetailBudget.text = budget.toString() + " $"
+            movieDetailBudget.text = budget.toString()
         } else {
             movieDetailBudget.text = "Not Available"
         }
         if(revenue!="0") {
-            movieDetailRevenue.text = revenue.toString()+" $"
+            movieDetailRevenue.text = revenue.toString()
         } else {
             movieDetailRevenue.text = "Not Available"
         }
         var genreText: String = ""
         for(i in genreList!!) {
             genreText += i.name
-            genreText+=", "
+            if(i!=genreList[genreList.size-1]) {
+                genreText+=", "
+            }
         }
         movieDetailGenre.text = genreText
         var productionCountryText: String = ""
         for(i in productionCountries!!) {
             productionCountryText+=i.name
+            if(i!=productionCountries[productionCountries.size-1]) {
+                productionCountryText+=", "
+            }
         }
         movieDetailProductionCountry.text = productionCountryText
         movieDetailReleaseDate.text = releaseDate.toString()
@@ -220,6 +240,12 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+        finish()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 }

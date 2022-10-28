@@ -14,7 +14,7 @@ data class MovieDetailsModel(
     @SerializedName("budget")
     val budget: Long,
     @SerializedName("genres")
-    val genres: List<MovieDetailGenres>?,
+    val genres: List<DetailGenres>?,
     @SerializedName("homepage")
     val homepage: String?,
     @SerializedName("id")
@@ -63,7 +63,7 @@ data class MovieDetailsModel(
         parcel.readString(),
         parcel.readParcelable(MovieDetailsBelongToCollection::class.java.classLoader),
         parcel.readLong(),
-        parcel.createTypedArrayList(MovieDetailGenres),
+        parcel.createTypedArrayList(DetailGenres),
         parcel.readString(),
         parcel.readLong(),
         parcel.readString(),

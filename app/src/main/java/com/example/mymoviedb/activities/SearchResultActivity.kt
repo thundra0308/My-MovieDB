@@ -3,73 +3,115 @@ package com.example.mymoviedb.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymoviedb.R
-import com.example.mymoviedb.adapters.MovieCatagoryListAdapter
 import com.example.mymoviedb.adapters.SearchResultAdapter
 import com.example.mymoviedb.databinding.ActivitySearchResultBinding
-import com.example.mymoviedb.models.MovieDetailsModel
-import com.example.mymoviedb.models.MoviesResultModel
-import com.example.mymoviedb.network.MovieDetailsApiInterface
-import com.example.mymoviedb.network.PopularMovieApiService
-import com.example.mymoviedb.network.SearchMovieResponse
+import com.example.mymoviedb.models.ResultModel
+import com.example.mymoviedb.screenstate.SearchResultActivityScreenState
 import com.example.mymoviedb.utils.Constants
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.mymoviedb.viewmodels.SearchResultActivityViewModel
 
 class SearchResultActivity : AppCompatActivity() {
+
     private  var binding: ActivitySearchResultBinding? = null
+    private val viewModel: SearchResultActivityViewModel by lazy {
+        ViewModelProvider(this).get(SearchResultActivityViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        val searchQuery = intent.getStringExtra(Constants.SEARCH_QUERY)
-        binding?.tvSearchResult?.text = "Showing Search Results For : $searchQuery"
         setActionBar()
-        val searchResult = intent.getParcelableExtra<SearchMovieResponse>(Constants.SEARCH_RESULT_MAIN)?.searchMovies
-        setUpRecyclerView(searchResult)
-    }
-
-    private fun getMovieDetails(movieId: Long) {
-        if(Constants.isNetworkAvailable(this)) {
-            val apiService = PopularMovieApiService.getInstance().create(MovieDetailsApiInterface::class.java)
-            apiService.getMovieDetailsById(movieId).enqueue(object : Callback<MovieDetailsModel> {
-                override fun onResponse(
-                    call: Call<MovieDetailsModel>,
-                    response: Response<MovieDetailsModel>
-                ) {
-                    if(response.isSuccessful) {
-                        Log.i("Movie Details = ",""+response.body())
-                        val result = response.body()
-                        val intent = Intent(this@SearchResultActivity,MovieDetailsActivity::class.java)
-                        intent.putExtra(Constants.MOVIE_DETAILS,result)
-                        startActivity(intent)
-                    }
-                }
-                override fun onFailure(call: Call<MovieDetailsModel>, t: Throwable) {
-                    Log.e("Failed Pathetically",""+t.message)
-                }
-
-            })
+        val searchQuery = intent.getStringExtra(Constants.SEARCH_QUERY)
+        viewModel.fetchSearchMovieList(searchQuery!!)
+        viewModel.fetchSearchSeriesList(searchQuery)
+        binding?.tvSearchResult?.text = "$searchQuery"
+        viewModel.searchMovieLiveData.observe(this) { state ->
+            processSearchedMovieResults(state)
+        }
+        viewModel.seriesLiveData.observe(this) { state ->
+            processSearchedSeriesResults(state)
         }
     }
 
-    private fun setUpRecyclerView(searchResult: List<MoviesResultModel>?) {
-        if(Constants.isNetworkAvailable(this)) {
-            val adapter = SearchResultAdapter(this@SearchResultActivity,searchResult!!)
-            adapter.setOnClickListener(object : SearchResultAdapter.onItemClickListener{
-                override fun onItemClick(position: Int) {
-                    val movieid: Long = searchResult[position].id
-                    getMovieDetails(movieid)
+    private fun processSearchedMovieResults(state: SearchResultActivityScreenState<List<ResultModel>?>) {
+        when(state) {
+            is SearchResultActivityScreenState.Loading -> {
+                binding?.pbMoviesearchactivity?.visibility = View.VISIBLE
+                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+            }
+            is SearchResultActivityScreenState.Success -> {
+                binding?.pbMoviesearchactivity?.visibility = View.GONE
+                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+                if(state.data!=null && state.data.isNotEmpty()) {
+                    setupMovieRecyclerView(state.data)
+                } else {
+                    binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
                 }
-            })
-            val rv = binding?.rvSearchResult
-            rv?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            rv?.setHasFixedSize(true)
-            rv?.adapter = adapter
+            }
+            is SearchResultActivityScreenState.Error -> {
+                binding?.pbMoviesearchactivity?.visibility = View.GONE
+                binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
+            }
         }
+    }
+
+    private fun processSearchedSeriesResults(state: SearchResultActivityScreenState<List<ResultModel>?>) {
+        when(state) {
+            is SearchResultActivityScreenState.Loading -> {
+                binding?.pbMoviesearchactivity?.visibility = View.VISIBLE
+                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+            }
+            is SearchResultActivityScreenState.Success -> {
+                binding?.pbMoviesearchactivity?.visibility = View.GONE
+                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+                if(state.data!=null && state.data.isNotEmpty()) {
+                    setupSeriesRecyclerView(state.data)
+                } else {
+                    binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
+                }
+            }
+            is SearchResultActivityScreenState.Error -> {
+                binding?.pbMoviesearchactivity?.visibility = View.GONE
+                binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
+            }
+        }
+    }
+
+    private fun setupMovieRecyclerView(movies: List<ResultModel>?) {
+        val adapter = SearchResultAdapter(this@SearchResultActivity, movies!!)
+        adapter.setOnClickListener(object : SearchResultAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+                val movieId = movies[position].id
+                val intent = Intent(this@SearchResultActivity,MovieDetailsActivity::class.java)
+                intent.putExtra(Constants.MOVIE_ID,movieId)
+                startActivity(intent)
+            }
+        })
+        val rv = binding?.rvMovieSearchResult
+        rv?.layoutManager = LinearLayoutManager(this@SearchResultActivity,LinearLayoutManager.HORIZONTAL,false)
+        rv?.setHasFixedSize(true)
+        rv?.adapter = adapter
+    }
+
+    private fun setupSeriesRecyclerView(movies: List<ResultModel>?) {
+        val adapter = SearchResultAdapter(this@SearchResultActivity, movies!!)
+        adapter.setOnClickListener(object : SearchResultAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+                val seriesId = movies[position].id
+                val intent = Intent(this@SearchResultActivity,SeriesDetailActivity::class.java)
+                intent.putExtra(Constants.MOVIE_ID,seriesId)
+                startActivity(intent)
+            }
+        })
+        val rv = binding?.rvSeriesSearchResult
+        rv?.layoutManager = LinearLayoutManager(this@SearchResultActivity,LinearLayoutManager.HORIZONTAL,false)
+        rv?.setHasFixedSize(true)
+        rv?.adapter = adapter
     }
 
     private fun setActionBar() {
@@ -86,6 +128,11 @@ class SearchResultActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 }

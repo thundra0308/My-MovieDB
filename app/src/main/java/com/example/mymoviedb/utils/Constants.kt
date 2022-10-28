@@ -33,6 +33,7 @@ object Constants {
     const val SEARCH_QUERY: String = "search query"
     const val MOVIE_DETAILS: String = "movie_details"
     const val VIDEO_DETAILS: String = "video_details"
+    const val MOVIE_ID: String = "movie_id"
     const val CURRENT_VIDEO_POSITION: String = "current_video_position"
 
 }

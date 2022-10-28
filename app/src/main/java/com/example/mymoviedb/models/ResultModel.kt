@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class MoviesResultModel(
+data class ResultModel(
     @SerializedName("id")
     val id: Long,
     @SerializedName("title")
@@ -36,12 +36,12 @@ data class MoviesResultModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<MoviesResultModel> {
-        override fun createFromParcel(parcel: Parcel): MoviesResultModel {
-            return MoviesResultModel(parcel)
+    companion object CREATOR : Parcelable.Creator<ResultModel> {
+        override fun createFromParcel(parcel: Parcel): ResultModel {
+            return ResultModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<MoviesResultModel?> {
+        override fun newArray(size: Int): Array<ResultModel?> {
             return arrayOfNulls(size)
         }
     }

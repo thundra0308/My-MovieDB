@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class MovieCreditCastAdapter(private val context: Context, private val creditLis
         }
         fun bindData(creditCast: MovieCreditCastModel) {
             val container = itemView.findViewById<CardView>(R.id.container_credit)
-            val image = itemView.findViewById<KenBurnsView>(R.id.movie_credit_image)
+            val image = itemView.findViewById<ImageView>(R.id.movie_credit_image)
             val name = itemView.findViewById<TextView>(R.id.tv_movieCreditName)
             val characterName = itemView.findViewById<TextView>(R.id.tv_movieCreditCharacterName)
             container.animation = AnimationUtils.loadAnimation(itemView.context,R.anim.fade_in)
@@ -36,13 +37,13 @@ class MovieCreditCastAdapter(private val context: Context, private val creditLis
                 .placeholder(R.drawable.ic_profileplaceholder)
                 .dontAnimate()
                 .into(image)
-            name.text = creditCast.name
-            characterName.text = "Character : ${creditCast.character}"
+            name.text = "Name : \n${creditCast.name}"
+            characterName.text = "Character : \n${creditCast.character}"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.rvitem_movie_credit,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.rv_cast_credit_item,parent,false)
 //        val layoutParms = LinearLayout.LayoutParams((parent.width*0.5).toInt(),(920.toDp()).toPx())
 //        layoutParms.setMargins((15.toDp()).toPx(),(100.toDp()),(40.toDp()).toPx(),0)
 //        view.layoutParams = layoutParms

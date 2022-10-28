@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="3000"
+    android:duration="250"
     android:interpolator = "@android:anim/decelerate_interpolator"
     >
     <translate
@@ -11,7 +11,7 @@
     <alpha
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
-        android:duration="500"/>
+        android:duration="250"/>
 
     <scale
         android:pivotX="50%"
@@ -20,6 +20,6 @@
         android:fromYScale="0.5"
         android:toXScale="1"
         android:toYScale="1"
-        android:duration="500"
+        android:duration="250"
         />
 </set>

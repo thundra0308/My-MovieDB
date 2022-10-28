@@ -12,11 +12,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mymoviedb.R
-import com.example.mymoviedb.models.MoviesResultModel
+import com.example.mymoviedb.models.ResultModel
 import com.example.mymoviedb.utils.Constants
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 
-class SearchResultAdapter(private val context: Context, private val movieList :List<MoviesResultModel>): RecyclerView.Adapter<SearchResultAdapter.MainViewHolder>() {
+class SearchResultAdapter(private val context: Context, private val movieList :List<ResultModel>): RecyclerView.Adapter<SearchResultAdapter.MainViewHolder>() {
     private lateinit var mListener: onItemClickListener
     inner class MainViewHolder(private val itemView: View,private val listener: onItemClickListener): RecyclerView.ViewHolder(itemView) {
         init {
@@ -24,14 +24,12 @@ class SearchResultAdapter(private val context: Context, private val movieList :L
                 listener.onItemClick(adapterPosition)
             }
         }
-        fun bindData(movie: MoviesResultModel) {
+        fun bindData(movie: ResultModel) {
             val container = itemView.findViewById<LinearLayout>(R.id.search_result_container)
-            val title = itemView.findViewById<TextView>(R.id.title_popular)
             val ratingBar = itemView.findViewById<CircularProgressBar>(R.id.rating_bar_main)
             val tvRating = itemView.findViewById<TextView>(R.id.tv_rating_main)
             val image = itemView.findViewById<ImageView>(R.id.poster_popular)
             container.animation = AnimationUtils.loadAnimation(itemView.context,R.anim.video_list_anim)
-            title.text = movie.title
             ratingBar.progress = movie.rating.toFloat()
             ratingBar.progressMax = 10.0F
             tvRating.text = movie.rating.toString()
@@ -46,8 +44,8 @@ class SearchResultAdapter(private val context: Context, private val movieList :L
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_catagory,parent,false)
-        val layoutParms = LinearLayout.LayoutParams((parent.width*0.5).toInt(),(920.toDp()).toPx())
-        layoutParms.setMargins((15.toDp()).toPx(),(100.toDp()),(40.toDp()).toPx(),0)
+        val layoutParms = LinearLayout.LayoutParams((parent.width*0.38).toInt(),(550.toDp()).toPx())
+        layoutParms.setMargins((0.toDp()).toPx(),(0.toDp()),(30.toDp()).toPx(),(0.toDp()))
         view.layoutParams = layoutParms
         return MainViewHolder(view,mListener)
     }

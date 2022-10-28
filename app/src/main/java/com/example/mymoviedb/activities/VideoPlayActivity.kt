@@ -1,8 +1,6 @@
 package com.example.mymoviedb.activities
 
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubePlayerView
 import com.example.mymoviedb.R
@@ -13,7 +11,6 @@ import com.example.mymoviedb.utils.Constants
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-
 
 class VideoPlayActivity : YouTubeBaseActivity() {
     private var binding: ActivityVideoPlayBinding? = null
@@ -45,6 +42,11 @@ class VideoPlayActivity : YouTubeBaseActivity() {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 }

@@ -5,27 +5,27 @@ import android.os.Parcelable
 import com.example.mymoviedb.models.ResultModel
 import com.google.gson.annotations.SerializedName
 
-data class SearchMovieResponse(
+data class PopularSeriesResponse(
     @SerializedName("results")
-    val searchedMovieResults: List<ResultModel>?
+    val popularSeries: List<ResultModel>?
 ): Parcelable {
     constructor(parcel: Parcel) : this(parcel.createTypedArrayList(ResultModel)) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeTypedList(searchedMovieResults)
+        parcel.writeTypedList(popularSeries)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SearchMovieResponse> {
-        override fun createFromParcel(parcel: Parcel): SearchMovieResponse {
-            return SearchMovieResponse(parcel)
+    companion object CREATOR : Parcelable.Creator<PopularSeriesResponse> {
+        override fun createFromParcel(parcel: Parcel): PopularSeriesResponse {
+            return PopularSeriesResponse(parcel)
         }
 
-        override fun newArray(size: Int): Array<SearchMovieResponse?> {
+        override fun newArray(size: Int): Array<PopularSeriesResponse?> {
             return arrayOfNulls(size)
         }
     }

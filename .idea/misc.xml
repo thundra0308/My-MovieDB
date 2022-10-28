@@ -12,6 +12,19 @@
         <entry key="..\:/My Android Apps/MyMovieDB/app/src/main/res/layout/rv_item_catagory.xml" value="0.128" />
         <entry key="..\:/My Android Apps/MyMovieDB/app/src/main/res/layout/rv_vitem_video.xml" value="0.1334853090172239" />
         <entry key="..\:/My Android Apps/MyMovieDB/app/src/main/res/layout/rvitem_movie_credit.xml" value="0.1" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/drawable/linear_gradient_bg.xml" value="0.2615" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/drawable/rating_background.xml" value="0.2535" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/drawable/rating_bar_background.xml" value="0.2535" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_main_series.xml" value="0.264" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_movie_details.xml" value="0.2" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_search_result.xml" value="0.2" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_series_detail.xml" value="0.264" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_cast_credit_item.xml" value="0.264" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_item_catagory.xml" value="0.27447916666666666" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_season_item.xml" value="0.264" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_vitem_video.xml" value="0.22826086956521738" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rvitem_movie_credit.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

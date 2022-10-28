@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary1"
+    tools:context=".activities.SeriesDetailActivity">
+
+    <ProgressBar
+        android:id="@+id/pb_seriesdetailactivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cl_sda">
+
+    <FrameLayout
+        android:id="@+id/fl_sda_banner"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.flaviofaria.kenburnsview.KenBurnsView
+                    android:id="@+id/keniv_sda_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    android:scaleType="fitXY"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/linear_gradient_bg"/>
+
+            </FrameLayout>
+
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:id="@+id/series_rating_arcbar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="40dp"
+                app:arc_finished_color="@color/primary2"
+                app:arc_max="100"
+                android:background="@android:color/transparent"
+                app:arc_suffix_text_padding="0dp"
+                app:arc_suffix_text_size="12dp"
+                app:arc_text_color="@color/textcolor2"
+                app:arc_text_size="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:arc_unfinished_color="@android:color/transparent"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/series_rating_arcbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardBackgroundColor="@color/primary2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/black"
+                        android:text="Total Vote Count : "/>
+
+                    <TextView
+                        android:id="@+id/tv_sda_tvc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="12sp"
+                        android:layout_marginStart="2dp"
+                        android:textColor="@color/black"
+                        android:text="00000"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="160dp"
+                app:cardCornerRadius="10dp"
+                android:elevation="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="1dp"
+                app:cardElevation="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_sda_poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profileplaceholder"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_sda_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="45dp"
+        app:cardBackgroundColor="@color/primary2"
+        app:cardCornerRadius="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/fl_sda_banner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_sda_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Avengers"
+            android:textColor="@color/black"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/cv_sda_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_series_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Overview"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:cardCornerRadius="6dp"
+                    android:layout_marginTop="4dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/tv_sda_overview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_series_seasons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/ll_series_overview"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Seasons Info"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sda_seasons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_series_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/ll_series_seasons"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Cast"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sda_cast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_series_credit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/ll_series_cast"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Crew"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sda_crew"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_series_allinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_below="@id/ll_series_credit"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="All Information"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:text="Original Title"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_originalname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Number of Seasons"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_numberofseasons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Number of Episodes"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_numberofepisodes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Genres :"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_genres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="First Air Date"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_fad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Last Air Date"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_lad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Adult Content"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_adult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Homepage :"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_homepage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Original Languages"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_originallanguages"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Spoken Languages"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_spokenlanguages"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Languages"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_languages"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Status"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Creates By"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_createdby"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="In Production"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_inproduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:minHeight="45dp"
+                        android:layout_marginEnd="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="Production Countries"
+                            android:textStyle="bold"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="45dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        app:cardCornerRadius="6dp"
+                        android:elevation="8dp"
+                        android:layout_marginStart="2dp"
+                        app:cardElevation="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_sda_productioncountries"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_series_videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/ll_series_allinfo"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    android:elevation="0dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Videos(Teaser, Trailers and More)"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/black"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sda_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

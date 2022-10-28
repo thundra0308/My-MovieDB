@@ -7,6 +7,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,10 +24,20 @@
         android:theme="@style/Theme.MyMovieDB"
         tools:targetApi="31">
         <activity
-            android:name=".activities.VideoPlayActivity"
-            android:theme="@style/Theme.MyMovieDB.BlackStatusBar"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:name=".activities.SeriesDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyMovieDB.SharedViewTransition"
             android:exported="false" />
+        <activity
+            android:name=".activities.MainActivitySeries"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyMovieDB.Main" />
+        <activity
+            android:name=".activities.VideoPlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:theme="@style/Theme.MyMovieDB.Main" />
         <activity
             android:name=".activities.MovieDetailsActivity"
             android:exported="false"
@@ -31,12 +47,12 @@
             android:name=".activities.SearchResultActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyMovieDB.SharedViewTransition" />
+            android:theme="@style/Theme.MyMovieDB.Main" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.MainActivityMovies"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyMovieDB.SharedViewTransition">
+            android:theme="@style/Theme.MyMovieDB.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,11 +60,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="com.google.android.youtube.api.service.START"/>
-        </intent>
-    </queries>
 
 </manifest>

@@ -1,596 +1,1076 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".activities.MovieDetailsActivity">
+    android:background="@color/primary1"
+    tools:context=".activities.SeriesDetailActivity">
 
-    <com.github.florent37.diagonallayout.DiagonalLayout
-        android:id="@+id/movie_detail_diagonal_view"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:diagonal_angle="8"
-        app:diagonal_position="bottom"
-        app:diagonal_direction="right"
-        android:background="@color/black">
+    <ProgressBar
+        android:id="@+id/pb_moviedetailactivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
-        <com.flaviofaria.kenburnsview.KenBurnsView
-            android:id="@+id/movie_detail_poster_image_view"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </com.github.florent37.diagonallayout.DiagonalLayout>
-
-    <LinearLayout
-        android:id="@+id/back_drop_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:gravity="bottom|end"
-        android:layout_marginEnd="29dp"
-        android:layout_marginTop="235dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/movie_detail_poster_circle_image_view"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            app:civ_border_width="3dp"
-            app:civ_circle_background_color="@color/white"
-            android:scaleType="centerCrop"/>
-
-        <TextView
-            android:id="@+id/movie_detail_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:textColor="@color/yellow_main"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rating_layout"
-        android:layout_width="221dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/movie_detail_diagonal_view"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="281dp"
-        android:background="@color/black"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginBottom="5dp"
-            android:text="Average Rating"
-            android:textColor="@color/yellow_main"
-            android:textSize="18sp"/>
-
-        <com.github.lzyzsd.circleprogress.ArcProgress
-            android:id="@+id/movie_rating_arcbar"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
-            app:arc_finished_color="@color/yellow_main"
-            app:arc_max="100"
-            app:arc_suffix_text_padding="0dp"
-            app:arc_suffix_text_size="12dp"
-            app:arc_text_color="@color/white"
-            app:arc_text_size="16dp"
-            app:arc_unfinished_color="@color/black"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:text="Total Vote Count : "
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="@color/yellow_main"
-                android:layout_marginStart="20dp"/>
-
-            <TextView
-                android:id="@+id/vote_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/yellow_main"
-        android:layout_below="@id/rating_layout"
-        android:layout_marginTop="5dp"/>
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/shadow"
-        android:layout_marginTop="2dp">
+        android:id="@+id/cl_mda">
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/fl_mda_banner"
             android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <com.flaviofaria.kenburnsview.KenBurnsView
+                        android:id="@+id/keniv_mda_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:src="@tools:sample/backgrounds/scenic"
+                        android:scaleType="fitXY"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/linear_gradient_bg"/>
+
+                </FrameLayout>
+
+                <com.github.lzyzsd.circleprogress.ArcProgress
+                    android:id="@+id/movies_rating_arcbar"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="40dp"
+                    app:arc_finished_color="@color/primary2"
+                    app:arc_max="100"
+                    android:background="@android:color/transparent"
+                    app:arc_suffix_text_padding="0dp"
+                    app:arc_suffix_text_size="12dp"
+                    app:arc_text_color="@color/textcolor2"
+                    app:arc_text_size="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:arc_unfinished_color="@android:color/transparent"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    app:cardCornerRadius="4dp"
+                    android:layout_marginStart="25dp"
+                    app:layout_constraintTop_toBottomOf="@id/movies_rating_arcbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:cardBackgroundColor="@color/primary2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:layout_marginStart="5dp"
+                            android:textColor="@color/black"
+                            android:text="Total Vote Count : "/>
+
+                        <TextView
+                            android:id="@+id/tv_mda_tvc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="5dp"
+                            android:textSize="12sp"
+                            android:layout_marginStart="2dp"
+                            android:textColor="@color/black"
+                            android:text="00000"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    app:cardCornerRadius="100dp"
+                    android:elevation="15dp"
+                    app:cardBackgroundColor="@color/primary2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="1dp"
+                    app:cardElevation="15dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        app:cardCornerRadius="100dp"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/iv_mda_poster"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_profileplaceholder"
+                            android:scaleType="centerCrop"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_mda_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:minHeight="45dp"
+            app:cardBackgroundColor="@color/primary2"
+            app:cardCornerRadius="5dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/fl_mda_banner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <LinearLayout
-                android:id="@+id/movie_detail_original_title_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Original Title : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_original_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_language_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Language : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_language"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_adult_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Adult : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_adult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_status_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Status : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_runtime_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Runtime : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_runtime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_budget_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Budget : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_budget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_revenue_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Total Revenue : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_revenue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_genre_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Genres : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_genre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_production_country_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Production Countries : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_production_country"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_release_date_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Release Date : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_original_homepage_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Homepage : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_homepage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/movie_detail_overview_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Overview : "
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/yellow_main"
-                    android:layout_marginStart="20dp"/>
-
-                <TextView
-                    android:id="@+id/movie_detail_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_movie_detail_cast"
+            <TextView
+                android:id="@+id/tv_mda_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="5dp">
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Avengers"
+                android:textColor="@color/black"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Movie Cast : "
-                    android:textColor="@color/yellow_main"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp"/>
+        </androidx.cardview.widget.CardView>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_movieDetailCast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"/>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/cv_mda_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_movie_detail_crew"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="5dp">
+                android:layout_height="match_parent"
+                >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Movie Crew : "
-                    android:textColor="@color/yellow_main"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_movieDetailCrew"
+                <LinearLayout
+                    android:id="@+id/ll_movies_overview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"/>
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
 
-            <LinearLayout
-                android:id="@+id/ll_video_and_trailers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="Overview"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Videos And Trailers : "
-                    android:textColor="@color/yellow_main"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp"/>
+                    </androidx.cardview.widget.CardView>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_movieDetailVideos"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:cardCornerRadius="6dp"
+                        android:layout_marginTop="4dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:id="@+id/tv_mda_overview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_movies_cast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"/>
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@id/ll_movies_overview"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="Cast"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"/>
 
-    </androidx.core.widget.NestedScrollView>
+                    </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_mda_cast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_movies_credit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@id/ll_movies_cast"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="Crew"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_mda_crew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_movies_allinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_below="@id/ll_movies_credit"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="All Information"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:padding="5dp"
+                                android:text="Original Title"
+                                android:textStyle="bold"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_originalname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="Genres"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_genres"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="Runtime"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_runtime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="Status"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_status"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="Release Date"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_rd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="BUDGET"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_budget"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="TOTAL REVENUE"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_revenue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="ADULT"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_adult"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="ORIGINAL LANGUAGE"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_originallanguage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="SPOKEN LANGUAGES"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_spokenlanguages"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="PRODUCTION COUNTRIES"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_pcountries"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:minHeight="45dp"
+                            android:layout_marginEnd="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="HOMEPAGE"
+                                android:textStyle="bold"
+                                android:padding="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dp"
+                            app:cardBackgroundColor="@color/primary2"
+                            app:cardCornerRadius="6dp"
+                            android:elevation="8dp"
+                            android:layout_marginStart="2dp"
+                            app:cardElevation="8dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_mda_homepage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="14sp"
+                                android:layout_gravity="center"
+                                android:gravity="center"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_movies_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@id/ll_movies_allinfo"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="@color/primary2"
+                        android:elevation="0dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="Videos(Teaser, Trailers and More)"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_mda_videos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@ import com.example.mymoviedb.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PopularMovieApiService {
+class ApiService {
     companion object {
         private var retrofit: Retrofit? = null
         fun getInstance(): Retrofit{

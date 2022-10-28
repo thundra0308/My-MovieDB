@@ -25,8 +25,10 @@ class MovieVideoAdapter(private val context: Context, private val videos: List<M
         fun bindData(video: MovieVideoResultModel) {
             val container = itemView.findViewById<CardView>(R.id.video_container)
             val thumbnailView = itemView.findViewById<ImageView>(R.id.video_image_view)
-            val txt = itemView.findViewById<TextView>(R.id.video_title)
-            txt.text = video.name
+            val txt1 = itemView.findViewById<TextView>(R.id.video_title)
+            val txt2 = itemView.findViewById<TextView>(R.id.video_site)
+            txt1.text = video.name
+            txt2.text = video.site
             container.animation = AnimationUtils.loadAnimation(itemView.context,R.anim.video_list_anim)
             Glide
                 .with(context)
