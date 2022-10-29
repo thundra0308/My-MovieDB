@@ -48,7 +48,6 @@
                 android:layout_gravity="center"
                 android:gravity="start|top"
                 android:layout_weight="1"
-                android:textStyle="bold"
                 android:textColor="@color/black"/>
 
             <TextView
@@ -59,7 +58,6 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="start|top"
-                android:textStyle="bold"
                 android:textColor="@color/black"/>
 
         </LinearLayout>

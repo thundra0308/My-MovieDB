@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mymoviedb.R
@@ -25,13 +26,10 @@ class SearchResultAdapter(private val context: Context, private val movieList :L
             }
         }
         fun bindData(movie: ResultModel) {
-            val container = itemView.findViewById<LinearLayout>(R.id.search_result_container)
-            val ratingBar = itemView.findViewById<CircularProgressBar>(R.id.rating_bar_main)
-            val tvRating = itemView.findViewById<TextView>(R.id.tv_rating_main)
+            val container = itemView.findViewById<CardView>(R.id.search_result_container)
+            val tvRating = itemView.findViewById<TextView>(R.id.tv_rating)
             val image = itemView.findViewById<ImageView>(R.id.poster_popular)
             container.animation = AnimationUtils.loadAnimation(itemView.context,R.anim.video_list_anim)
-            ratingBar.progress = movie.rating.toFloat()
-            ratingBar.progressMax = 10.0F
             tvRating.text = movie.rating.toString()
             Glide
                 .with(context)

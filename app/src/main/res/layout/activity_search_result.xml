@@ -136,7 +136,6 @@
                     android:textSize="16sp"
                     android:layout_gravity="center|start"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:text="MOVIES"
                     android:textColor="@color/primary2"/>
 
@@ -188,7 +187,6 @@
                     android:textSize="16sp"
                     android:layout_gravity="center|start"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:text="SERIES"
                     android:textColor="@color/primary2"/>
 

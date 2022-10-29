@@ -12,6 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/ic_impact_t</item>
+        <item name="fontFamily">@font/ic_impact_t</item>
+        <item name="fontStyle">normal</item>
     </style>
     <style name="Theme.MyMovieDB.SharedViewTransition" parent="Theme.MyMovieDB">
         <item name="android:windowContentTransitions">true</item>

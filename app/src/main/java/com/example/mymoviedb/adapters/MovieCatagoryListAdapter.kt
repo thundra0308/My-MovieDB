@@ -24,11 +24,8 @@ class MovieCatagoryListAdapter(private val context: Context,private val movieLis
             }
         }
         fun bindData(movie: ResultModel) {
-            val ratingBar = itemView.findViewById<CircularProgressBar>(R.id.rating_bar_main)
-            val tvRating = itemView.findViewById<TextView>(R.id.tv_rating_main)
+            val tvRating = itemView.findViewById<TextView>(R.id.tv_rating)
             val image = itemView.findViewById<ImageView>(R.id.poster_popular)
-            ratingBar.progress = movie.rating.toFloat()
-            ratingBar.progressMax = 10.0F
             tvRating.text = movie.rating.toString()
             Glide
                 .with(context)
@@ -40,7 +37,7 @@ class MovieCatagoryListAdapter(private val context: Context,private val movieLis
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_catagory,parent,false)
-        val layoutParms = LinearLayout.LayoutParams((parent.width*0.37).toInt(),(550.toDp()).toPx())
+        val layoutParms = LinearLayout.LayoutParams((parent.width*0.36).toInt(),(550.toDp()).toPx())
         layoutParms.setMargins((15.toDp()).toPx(),(0.toDp()),(15.toDp()).toPx(),(0.toDp()))
         view.layoutParams = layoutParms
         return MainViewHolder(view,mListener)

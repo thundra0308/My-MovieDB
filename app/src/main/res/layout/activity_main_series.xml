@@ -17,8 +17,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        app:cardElevation="8dp"
-        android:elevation="8dp"
+        app:cardElevation="0dp"
+        android:elevation="0dp"
         app:cardBackgroundColor="@color/primary2">
 
         <LinearLayout
@@ -43,7 +43,7 @@
                 android:gravity="end"
                 android:text="MY MovieDB"
                 android:textColor="@color/primary1"
-                android:textStyle="bold"
+                android:fontFamily="@font/ic_impact_t"
                 android:textSize="28sp"/>
 
         </LinearLayout>
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MOVIES"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/ic_impact_t"
                     android:layout_gravity="center"
                     android:textColor="@color/primary1"
                     android:gravity="center"/>
@@ -144,17 +144,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardCornerRadius="7.5dp"
+                app:cardCornerRadius="7dp"
                 app:cardBackgroundColor="@color/primary1"
                 android:elevation="0dp"
                 app:cardElevation="0dp"
-                android:layout_margin="1dp">
+                android:layout_margin="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SERIES"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/ic_impact_t"
                     android:layout_gravity="center"
                     android:textColor="@color/primary2"
                     android:gravity="center"/>
@@ -175,6 +175,7 @@
         android:layout_marginTop="150dp"/>
 
     <ScrollView
+        android:id="@+id/sv_sma"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="25dp">
@@ -191,7 +192,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/primary2"
                 android:text="Popular"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/ic_impact_t"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mainseries_popular"

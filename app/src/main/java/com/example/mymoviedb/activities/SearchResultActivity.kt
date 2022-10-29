@@ -41,21 +41,13 @@ class SearchResultActivity : AppCompatActivity() {
     private fun processSearchedMovieResults(state: SearchResultActivityScreenState<List<ResultModel>?>) {
         when(state) {
             is SearchResultActivityScreenState.Loading -> {
-                binding?.pbMoviesearchactivity?.visibility = View.VISIBLE
-                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+                //TODO
             }
             is SearchResultActivityScreenState.Success -> {
-                binding?.pbMoviesearchactivity?.visibility = View.GONE
-                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
-                if(state.data!=null && state.data.isNotEmpty()) {
                     setupMovieRecyclerView(state.data)
-                } else {
-                    binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
-                }
             }
             is SearchResultActivityScreenState.Error -> {
-                binding?.pbMoviesearchactivity?.visibility = View.GONE
-                binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
+                //TODO
             }
         }
     }
@@ -63,21 +55,13 @@ class SearchResultActivity : AppCompatActivity() {
     private fun processSearchedSeriesResults(state: SearchResultActivityScreenState<List<ResultModel>?>) {
         when(state) {
             is SearchResultActivityScreenState.Loading -> {
-                binding?.pbMoviesearchactivity?.visibility = View.VISIBLE
-                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
+                //TODO
             }
             is SearchResultActivityScreenState.Success -> {
-                binding?.pbMoviesearchactivity?.visibility = View.GONE
-                binding?.tvErrormoviesearchactivity?.visibility =View.GONE
-                if(state.data!=null && state.data.isNotEmpty()) {
                     setupSeriesRecyclerView(state.data)
-                } else {
-                    binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
-                }
             }
             is SearchResultActivityScreenState.Error -> {
-                binding?.pbMoviesearchactivity?.visibility = View.GONE
-                binding?.tvErrormoviesearchactivity?.visibility =View.VISIBLE
+                //TODO
             }
         }
     }
