@@ -1,23 +1,38 @@
 # My-MovieDB
-A Movie and Series Info Android Application Like IMDB Website, Uses TMDB Api
 
- <p float="left">
+My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and Information About Any Movie or Series from TMDB Database
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-19-00-13-86_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187080344-def49644-d1ec-446c-9783-df2f62686ba3.jpg">
+<br>
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-19-01-00-14_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187080413-15a131ea-6ee4-4e5f-a938-ebae148bef9e.jpg">
+### 🌟STAR THIS REPOSITORY TO SUPPORT THE DEVELOPER
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-20-41-20-62_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187081179-a859abca-9100-4804-90fb-015ae7c99c9d.jpg">
+<br>
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-20-44-38-19_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187081310-b2b6b7ee-29c9-460c-a4ec-441fa9886809.jpg">
+<img src="https://user-images.githubusercontent.com/103625079/198847157-82b9c918-ebaa-42cd-a4a2-e9d71900c807.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847160-fcfc78e3-60be-4c9c-bc17-e6208bd3b142.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847166-1ac48c1d-78cc-49ed-84a6-0656f426de19.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847184-6be12f6e-2331-4bd3-8f65-75cdd3bd2435.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847194-8632a754-20a4-49b2-81f3-c9267c6c5642.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847202-f14f7359-9788-46c4-b77a-e7f58cc771b8.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847229-a8c9eae6-32ea-42e0-b2a8-4c1edd4e62e0.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847236-9cb78b17-e9ac-49c5-a071-06cbd3217c70.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/198847239-3079f5c7-7930-4c3f-881e-bca6e6359354.jpg?raw=true" style="width: 31%;margin:16px;" />
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-20-48-34-59_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187081535-4030cb43-e11f-49a9-98fd-bef7b3bfd124.jpg">
+## APP FEATURES
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-19-07-26-02_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187081739-730c370a-f6ed-40b2-8707-2ab034f868be.jpg">
+- Get Every Important Information About Any Movie or Series
 
-<img width="280" height="600" alt="Screenshot_2022-08-28-21-15-26-73_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187083206-74b2a463-5e60-471d-ad8f-90fbc73064e5.jpg">
+- Feature to Search Any Movie or Series
 
-<img width="600" height="280" alt="Screenshot_2022-08-28-21-15-26-73_833c5417b36dc4dd91d57d67aabb8a7e" src="https://user-images.githubusercontent.com/103625079/187083287-55f365fe-375d-4626-ab74-0dd7bf2e97d0.jpg">
+- Seperate Catagory for Movie and Series
 
+- Get Movie or Series by Popular, Trending, etc Catagory
 
-</p>
+- Playback Movie or Series Related Videos
+
+- Get Season Details of Any Series
+
+## WANT TO CONTRIBUTE?
+
+- All contributions are welcome, from code to documentation to graphics to design suggestions to bug reports. Please use GitHub to its fullest; contribute Pull Requests
+
