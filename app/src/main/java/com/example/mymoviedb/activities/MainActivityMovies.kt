@@ -52,11 +52,11 @@ class MainActivityMovies : AppCompatActivity() {
         when(state) {
             is MainActivityScreenState.Loading -> {
                 binding?.pbMainactivity?.visibility = View.VISIBLE
-                binding?.rvPopular?.visibility = View.INVISIBLE
+                binding?.svMma?.visibility = View.INVISIBLE
             }
             is MainActivityScreenState.Success -> {
                 binding?.pbMainactivity?.visibility = View.GONE
-                binding?.rvPopular?.visibility = View.VISIBLE
+                binding?.svMma?.visibility = View.VISIBLE
                 if(state.data!=null) {
                     val adapter = MovieCatagoryListAdapter(this@MainActivityMovies,state.data)
                     adapter.setOnClickListener(object : MovieCatagoryListAdapter.onItemClickListener{
@@ -75,7 +75,7 @@ class MainActivityMovies : AppCompatActivity() {
             }
             is MainActivityScreenState.Error -> {
                 binding?.pbMainactivity?.visibility = View.GONE
-                binding?.rvPopular?.visibility = View.INVISIBLE
+                binding?.svMma?.visibility = View.VISIBLE
             }
         }
     }

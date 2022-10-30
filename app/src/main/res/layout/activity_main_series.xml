@@ -88,7 +88,7 @@
                         android:layout_height="?attr/actionBarSize"
                         android:background="@color/primary1"
                         android:padding="8dp"
-                        app:queryHint="Search Movies..."
+                        app:queryHint="Search Series..."
                         app:iconifiedByDefault="false"
                         />
 
