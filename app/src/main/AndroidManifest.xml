@@ -32,7 +32,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyMovieDB.SharedViewTransition" />
         <activity
-            android:name=".activities.MainActivitySeries"
+            android:name=".activities.mainactivity.MainActivitySeries"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyMovieDB.Main" />
@@ -52,7 +52,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyMovieDB.Main" />
         <activity
-            android:name=".activities.MainActivityMovies"
+            android:name=".activities.mainactivity.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyMovieDB.Main">

@@ -21,6 +21,8 @@
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_search_result.xml" value="0.2" />
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_series_detail.xml" value="0.4" />
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/activity_video_play.xml" value="0.27447916666666666" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/fragment_main_movie.xml" value="0.27447916666666666" />
+        <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/fragment_main_series.xml" value="0.27447916666666666" />
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_cast_credit_item.xml" value="0.264" />
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_item_catagory.xml" value="0.4" />
         <entry key="..\:/MyAndroidApps/MyMovieDB/app/src/main/res/layout/rv_season_item.xml" value="0.264" />

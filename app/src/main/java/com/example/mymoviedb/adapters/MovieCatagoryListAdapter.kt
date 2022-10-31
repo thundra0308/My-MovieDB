@@ -15,7 +15,7 @@ import com.example.mymoviedb.models.ResultModel
 import com.example.mymoviedb.utils.Constants
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 
-class MovieCatagoryListAdapter(private val context: Context,private val movieList :List<ResultModel>): RecyclerView.Adapter<MovieCatagoryListAdapter.MainViewHolder>() {
+class MovieCatagoryListAdapter(private val context: Context,private var movieList :List<ResultModel>): RecyclerView.Adapter<MovieCatagoryListAdapter.MainViewHolder>() {
     private lateinit var mListener: onItemClickListener
     inner class MainViewHolder(private val itemView: View, private val listener: onItemClickListener): RecyclerView.ViewHolder(itemView) {
         init {
