@@ -8,8 +8,8 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 
 <br>
 
-<img src="https://user-images.githubusercontent.com/103625079/198847157-82b9c918-ebaa-42cd-a4a2-e9d71900c807.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
-<img src="https://user-images.githubusercontent.com/103625079/198847160-fcfc78e3-60be-4c9c-bc17-e6208bd3b142.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/199246045-c1ce948a-a7ed-46b0-b458-d5a34f18edb4.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/103625079/199246117-45c06434-0ab8-4ca0-b3ba-1c7b9b36b6a8.jpg" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/103625079/198847166-1ac48c1d-78cc-49ed-84a6-0656f426de19.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/103625079/198847184-6be12f6e-2331-4bd3-8f65-75cdd3bd2435.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/103625079/198847194-8632a754-20a4-49b2-81f3-c9267c6c5642.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
