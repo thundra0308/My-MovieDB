@@ -4,7 +4,7 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 
 <br>
 
-### 🌟STAR THIS REPOSITORY TO SUPPORT THE DEVELOPER
+### 🌟STAR THIS REPOSITORY TO SUPPORT
 
 <br>
 
@@ -18,11 +18,23 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 <img src="https://user-images.githubusercontent.com/103625079/198847236-9cb78b17-e9ac-49c5-a071-06cbd3217c70.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/103625079/198847239-3079f5c7-7930-4c3f-881e-bca6e6359354.jpg?raw=true" style="width: 31%;margin:16px;" />
 
+## BUILD INFORMATION
+
+- Have Used TMDB API
+
+- Clean Architecture with MVVM (Model View ViewModel)
+
+- Support For Both Light and Dark UI
+
+- Retrofit and GSON for API Handling
+
+- Fragments with ViewModel
+
 ## APP FEATURES
 
 - Get Every Important Information About Any Movie or Series
 
-- Feature to Search Any Movie or Series
+- Search Any Movie or Series
 
 - Seperate Catagory for Movie and Series
 
@@ -34,5 +46,5 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 
 ## WANT TO CONTRIBUTE?
 
-- All contributions are welcome, from code to documentation to graphics to design suggestions to bug reports. Please use GitHub to its fullest; contribute Pull Requests
+- All contributions are Welcome 😊
 
