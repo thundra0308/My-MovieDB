@@ -18,6 +18,9 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 <img src="https://user-images.githubusercontent.com/103625079/198847236-9cb78b17-e9ac-49c5-a071-06cbd3217c70.jpg?raw=true" style="width: 31%;margin:16px;" />&nbsp;&nbsp;
 <img src="https://user-images.githubusercontent.com/103625079/198847239-3079f5c7-7930-4c3f-881e-bca6e6359354.jpg?raw=true" style="width: 31%;margin:16px;" />
 
+
+<br>
+
 ## BUILD INFORMATION
 
 - Have Used TMDB API
@@ -29,6 +32,8 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 - Retrofit and GSON for API Handling
 
 - Fragments with ViewModel
+
+<br>
 
 ## APP FEATURES
 
@@ -43,6 +48,8 @@ My-MovieDB is an Application to Provide Easy on Mobile Access to Vast Data and I
 - Playback Movie or Series Related Videos
 
 - Get Season Details of Any Series
+
+<br>
 
 ## WANT TO CONTRIBUTE?
 
